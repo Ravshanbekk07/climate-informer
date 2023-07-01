@@ -40,7 +40,7 @@ def main():
 
 @app.route('/setwebhook',methods = ['GET'])
 def set_webhook():
-    s = bot.setWebhook()
+    s = bot.setWebhook('https://climateinformer7.pythonanywhere.com/')
     if s:
         return 'webhook setup ok'
     else:
