@@ -87,10 +87,11 @@ def climate (update:Update,context:CallbackContext):
     humidity = response.json()['main']['humidity']
     wind = response.json()['wind']['speed']
     sunrise = response.json()['sys']['sunrise']
-    sr = datetime.utcfromtimestamp(sunrise)
+    sr = datetime.datetime.utcfromtimestamp(sunrise)
    
     sunset = response.json()['sys']['sunset']
-    ss = datetime.utcfromtimestamp(sunset)
+    ss = datetime.datetime.utcfromtimestamp(sunset)
+   
     text= f"""Bugun, {sana}
     
     {hudud}
