@@ -93,14 +93,12 @@ def climate (update:Update,context:CallbackContext):
 
     uz_time= pytz.timezone('Asia/Tashkent')
     sr = datetime.datetime.fromtimestamp(sunrise)
-
     uzbekistansr=uz_time.localize(sr)
 
 
-    uz_time= pytz.timezone('Asia/Tashkent')
     ss = datetime.datetime.fromtimestamp(sunset)
-
     uzbekistanss=uz_time.localize(ss)
+    
    
     text= f"""Bugun, {sana}
     
