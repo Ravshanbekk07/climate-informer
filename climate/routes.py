@@ -12,7 +12,7 @@ TOKEN = os.environ['TOKEN']
 bot = Bot(token=TOKEN)
 
 
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook/', methods=['GET', 'POST'])
 def main():
     dp = Dispatcher(bot, None, workers=0)
     update = Update.de_json(request.get_json(force=True), bot)
