@@ -12,7 +12,7 @@ TOKEN=os.environ['TOKEN']
 bot = Bot(token=TOKEN)
 
 
-@app.route('/webhook',methods=['GET'])
+@app.route('/webhook',methods=['GET','POST'])
 def main():
     dp = Dispatcher(bot,None,workers=0)
     update = Update.de_json(request.get_json(force=True),bot)
@@ -38,7 +38,7 @@ def main():
     dp.process_update(update)
     return 'cool'
 
-@app.route('/setwebhook',methods = ['GET'])
+@app.route('/setwebhook',methods = ['GET','POST'])
 def set_webhook():
     s = bot.setWebhook('https://climateinformer7.pythonanywhere.com/')
     if s:
