@@ -87,7 +87,10 @@ def climate (update:Update,context:CallbackContext):
     humidity = response.json()['main']['humidity']
     wind = response.json()['wind']['speed']
     sunrise = response.json()['sys']['sunrise']
+    sr = datetime.utcfromtimestamp(sunrise)
+   
     sunset = response.json()['sys']['sunset']
+    ss = datetime.utcfromtimestamp(sunset)
     text= f"""Bugun, {sana}
     
     {hudud}
@@ -103,8 +106,8 @@ def climate (update:Update,context:CallbackContext):
     Bulutlar: {clouds}%
     Namlik: {humidity}%
     Shamol: {wind} m/s
-    Quyosh chiqishi: :{sunrise}
-    Quyosh botishi: {sunset}
+    Quyosh chiqishi: :{sr}
+    Quyosh botishi: {ss}
 
     Foydali deb bilgan bo'lsangiz yaqinlaringizga ham ulashing"""
     bot = context.bot
