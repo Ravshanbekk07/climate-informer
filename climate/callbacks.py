@@ -2,9 +2,10 @@ from telegram.ext import  CallbackContext
 from telegram import Update,KeyboardButton,ReplyKeyboardMarkup
 import requests
 import datetime
-from pprint import pprint
+import pytz
 
 
+uz_time= pytz.timezone('Asia/Tashkent')
 
 TOKEN= "6286747512:AAE80UkdTFBY0ko1PlmBMzim8TnZh-gULAI"
 def start(update: Update, context: CallbackContext):
@@ -86,11 +87,20 @@ def climate (update:Update,context:CallbackContext):
     clouds = response.json()['clouds']['all']
     humidity = response.json()['main']['humidity']
     wind = response.json()['wind']['speed']
+
     sunrise = response.json()['sys']['sunrise']
-    sr = datetime.datetime.utcfromtimestamp(sunrise)
-   
     sunset = response.json()['sys']['sunset']
-    ss = datetime.datetime.utcfromtimestamp(sunset)
+
+    uz_time= pytz.timezone('Asia/Tashkent')
+    sr = datetime.datetime.fromtimestamp(sunrise)
+
+    uzbekistansr=uz_time.localize(sr)
+
+
+    uz_time= pytz.timezone('Asia/Tashkent')
+    ss = datetime.datetime.fromtimestamp(sunset)
+
+    uzbekistanss=uz_time.localize(ss)
    
     text= f"""Bugun, {sana}
     
@@ -107,8 +117,8 @@ def climate (update:Update,context:CallbackContext):
     Bulutlar: {clouds}%
     Namlik: {humidity}%
     Shamol: {wind} m/s
-    Quyosh chiqishi: :{sr}
-    Quyosh botishi: {ss}
+    Quyosh chiqishi: :{uzbekistansr}
+    Quyosh botishi: {uzbekistanss}
 
     Foydali deb bilgan bo'lsangiz yaqinlaringizga ham ulashing"""
     bot = context.bot
